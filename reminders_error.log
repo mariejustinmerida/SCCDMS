@@ -1,0 +1,12 @@
+[01-May-2025 23:26:11 Europe/Berlin] Request method: POST
+[01-May-2025 23:26:11 Europe/Berlin] Raw input: {"title":"qwedwaddwa","description":"wdawdawdwadaw","reminder_date":"2025-05-01"}
+[01-May-2025 23:26:11 Europe/Berlin] POST raw input: {"title":"qwedwaddwa","description":"wdawdawdwadaw","reminder_date":"2025-05-01"}
+[01-May-2025 23:26:11 Europe/Berlin] Decoded data: Array
+(
+    [title] => qwedwaddwa
+    [description] => wdawdawdwadaw
+    [reminder_date] => 2025-05-01
+)
+
+[01-May-2025 23:26:11 Europe/Berlin] Adding reminder: Title=qwedwaddwa, Date=2025-05-01, User=1
+[01-May-2025 23:26:11 Europe/Berlin] Reminder added successfully with ID: 1

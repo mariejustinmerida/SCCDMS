@@ -1,0 +1,8 @@
+/vendor/
+/logs/
+/storage/
+/uploads/
+/temp/
+/temp_qrcodes/
+/config/*.json
+.env

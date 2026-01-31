@@ -1,0 +1,1126 @@
+[28-Mar-2025 19:10:28 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => TITLTTTKMWNKW
+    [type_id] => 3
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 28, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+        )
+
+)
+
+[28-Mar-2025 19:10:28 Europe/Berlin] Form data: title=TITLTTTKMWNKW, type_id=3, content length=2658
+[28-Mar-2025 19:10:28 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[28-Mar-2025 19:10:28 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[28-Mar-2025 19:10:28 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[28-Mar-2025 19:10:28 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e6e61463b5b.html
+[28-Mar-2025 19:10:28 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+)
+
+[28-Mar-2025 19:10:28 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+)
+
+[28-Mar-2025 19:10:28 Europe/Berlin] User workflow: Array
+(
+)
+
+[28-Mar-2025 19:10:28 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[28-Mar-2025 19:10:28 Europe/Berlin] Inserting workflow step: document_id=53, office_id=5, user_id=, recipient_type=office, step_order=1
+[28-Mar-2025 19:10:28 Europe/Berlin] Document processed successfully: document_id=53
+[28-Mar-2025 19:14:48 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 28, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[28-Mar-2025 19:14:48 Europe/Berlin] Form data: title=New Document, type_id=1, content length=2658
+[28-Mar-2025 19:14:48 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[28-Mar-2025 19:14:48 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[28-Mar-2025 19:14:48 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[28-Mar-2025 19:14:48 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e6e7180f8b4.html
+[28-Mar-2025 19:14:48 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[28-Mar-2025 19:14:48 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[28-Mar-2025 19:14:48 Europe/Berlin] User workflow: Array
+(
+)
+
+[28-Mar-2025 19:14:48 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[28-Mar-2025 19:14:48 Europe/Berlin] Inserting workflow step: document_id=54, office_id=5, user_id=, recipient_type=office, step_order=1
+[28-Mar-2025 19:14:48 Europe/Berlin] Inserting workflow step: document_id=54, office_id=9, user_id=, recipient_type=office, step_order=2
+[28-Mar-2025 19:14:48 Europe/Berlin] Inserting workflow step: document_id=54, office_id=1, user_id=, recipient_type=office, step_order=3
+[28-Mar-2025 19:14:48 Europe/Berlin] Document processed successfully: document_id=54
+[28-Mar-2025 19:20:08 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document 5
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 28, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[28-Mar-2025 19:20:08 Europe/Berlin] Form data: title=New Document 5, type_id=1, content length=2658
+[28-Mar-2025 19:20:08 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[28-Mar-2025 19:20:08 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[28-Mar-2025 19:20:08 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[28-Mar-2025 19:20:08 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e6e85857fef.html
+[28-Mar-2025 19:20:08 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[28-Mar-2025 19:20:08 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[28-Mar-2025 19:20:08 Europe/Berlin] User workflow: Array
+(
+)
+
+[28-Mar-2025 19:20:08 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[28-Mar-2025 19:20:08 Europe/Berlin] Inserting workflow step: document_id=55, office_id=5, user_id=, recipient_type=office, step_order=1
+[28-Mar-2025 19:20:08 Europe/Berlin] Inserting workflow step: document_id=55, office_id=9, user_id=, recipient_type=office, step_order=2
+[28-Mar-2025 19:20:08 Europe/Berlin] Inserting workflow step: document_id=55, office_id=1, user_id=, recipient_type=office, step_order=3
+[28-Mar-2025 19:20:08 Europe/Berlin] Document processed successfully: document_id=55
+[28-Mar-2025 19:23:53 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document 10
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 28, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[28-Mar-2025 19:23:53 Europe/Berlin] Form data: title=New Document 10, type_id=1, content length=2658
+[28-Mar-2025 19:23:53 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[28-Mar-2025 19:23:53 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[28-Mar-2025 19:23:53 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[28-Mar-2025 19:23:53 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e6e939969c1.html
+[28-Mar-2025 19:23:53 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[28-Mar-2025 19:23:53 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[28-Mar-2025 19:23:53 Europe/Berlin] User workflow: Array
+(
+)
+
+[28-Mar-2025 19:23:53 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[28-Mar-2025 19:23:53 Europe/Berlin] Inserting workflow step: document_id=56, office_id=5, user_id=, recipient_type=office, step_order=1
+[28-Mar-2025 19:23:53 Europe/Berlin] Inserting workflow step: document_id=56, office_id=9, user_id=, recipient_type=office, step_order=2
+[28-Mar-2025 19:23:53 Europe/Berlin] Inserting workflow step: document_id=56, office_id=1, user_id=, recipient_type=office, step_order=3
+[28-Mar-2025 19:23:53 Europe/Berlin] Document processed successfully: document_id=56
+[28-Mar-2025 19:38:22 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document Mark
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 28, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[28-Mar-2025 19:38:22 Europe/Berlin] Form data: title=New Document Mark, type_id=1, content length=2658
+[28-Mar-2025 19:38:22 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[28-Mar-2025 19:38:22 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[28-Mar-2025 19:38:22 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[28-Mar-2025 19:38:22 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e6ec9edd3ab.html
+[28-Mar-2025 19:38:22 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[28-Mar-2025 19:38:22 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[28-Mar-2025 19:38:22 Europe/Berlin] User workflow: Array
+(
+)
+
+[28-Mar-2025 19:38:22 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[28-Mar-2025 19:38:22 Europe/Berlin] Inserting workflow step: document_id=57, office_id=5, user_id=, recipient_type=office, step_order=1
+[28-Mar-2025 19:38:22 Europe/Berlin] Inserting workflow step: document_id=57, office_id=9, user_id=, recipient_type=office, step_order=2
+[28-Mar-2025 19:38:22 Europe/Berlin] Inserting workflow step: document_id=57, office_id=1, user_id=, recipient_type=office, step_order=3
+[28-Mar-2025 19:38:22 Europe/Berlin] Document processed successfully: document_id=57
+[29-Mar-2025 03:08:35 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New New New
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 29, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[29-Mar-2025 03:08:35 Europe/Berlin] Form data: title=New New New, type_id=1, content length=2658
+[29-Mar-2025 03:08:35 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[29-Mar-2025 03:08:35 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[29-Mar-2025 03:08:35 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[29-Mar-2025 03:08:35 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e75623b6cc7.html
+[29-Mar-2025 03:08:35 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[29-Mar-2025 03:08:35 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[29-Mar-2025 03:08:35 Europe/Berlin] User workflow: Array
+(
+)
+
+[29-Mar-2025 03:08:35 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[29-Mar-2025 03:08:35 Europe/Berlin] Inserting workflow step: document_id=58, office_id=5, user_id=, recipient_type=office, step_order=1
+[29-Mar-2025 03:08:35 Europe/Berlin] Inserting workflow step: document_id=58, office_id=9, user_id=, recipient_type=office, step_order=2
+[29-Mar-2025 03:08:35 Europe/Berlin] Inserting workflow step: document_id=58, office_id=1, user_id=, recipient_type=office, step_order=3
+[29-Mar-2025 03:08:35 Europe/Berlin] Document processed successfully: document_id=58
+[29-Mar-2025 03:21:24 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => John Michael Document
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 29, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[29-Mar-2025 03:21:24 Europe/Berlin] Form data: title=John Michael Document, type_id=1, content length=2658
+[29-Mar-2025 03:21:24 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[29-Mar-2025 03:21:24 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[29-Mar-2025 03:21:24 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[29-Mar-2025 03:21:24 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e7592429f1b.html
+[29-Mar-2025 03:21:24 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[29-Mar-2025 03:21:24 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[29-Mar-2025 03:21:24 Europe/Berlin] User workflow: Array
+(
+)
+
+[29-Mar-2025 03:21:24 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[29-Mar-2025 03:21:24 Europe/Berlin] Inserting workflow step: document_id=59, office_id=5, user_id=, recipient_type=office, step_order=1
+[29-Mar-2025 03:21:24 Europe/Berlin] Inserting workflow step: document_id=59, office_id=9, user_id=, recipient_type=office, step_order=2
+[29-Mar-2025 03:21:24 Europe/Berlin] Inserting workflow step: document_id=59, office_id=1, user_id=, recipient_type=office, step_order=3
+[29-Mar-2025 03:21:24 Europe/Berlin] Document processed successfully: document_id=59
+[29-Mar-2025 03:25:55 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document 999
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 29, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[29-Mar-2025 03:25:55 Europe/Berlin] Form data: title=New Document 999, type_id=1, content length=2658
+[29-Mar-2025 03:25:55 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[29-Mar-2025 03:25:55 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[29-Mar-2025 03:25:55 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[29-Mar-2025 03:25:55 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e75a33a3832.html
+[29-Mar-2025 03:25:55 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[29-Mar-2025 03:25:55 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[29-Mar-2025 03:25:55 Europe/Berlin] User workflow: Array
+(
+)
+
+[29-Mar-2025 03:25:55 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[29-Mar-2025 03:25:55 Europe/Berlin] Inserting workflow step: document_id=60, office_id=5, user_id=, recipient_type=office, step_order=1
+[29-Mar-2025 03:25:55 Europe/Berlin] Inserting workflow step: document_id=60, office_id=9, user_id=, recipient_type=office, step_order=2
+[29-Mar-2025 03:25:55 Europe/Berlin] Inserting workflow step: document_id=60, office_id=1, user_id=, recipient_type=office, step_order=3
+[29-Mar-2025 03:25:55 Europe/Berlin] Document processed successfully: document_id=60
+[29-Mar-2025 03:30:59 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document 38641263
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 29, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[29-Mar-2025 03:30:59 Europe/Berlin] Form data: title=New Document 38641263, type_id=1, content length=2658
+[29-Mar-2025 03:30:59 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[29-Mar-2025 03:30:59 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[29-Mar-2025 03:30:59 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[29-Mar-2025 03:30:59 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e75b635eca7.html
+[29-Mar-2025 03:30:59 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[29-Mar-2025 03:30:59 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[29-Mar-2025 03:30:59 Europe/Berlin] User workflow: Array
+(
+)
+
+[29-Mar-2025 03:30:59 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[29-Mar-2025 03:30:59 Europe/Berlin] Inserting workflow step: document_id=61, office_id=5, user_id=, recipient_type=office, step_order=1
+[29-Mar-2025 03:30:59 Europe/Berlin] Inserting workflow step: document_id=61, office_id=9, user_id=, recipient_type=office, step_order=2
+[29-Mar-2025 03:30:59 Europe/Berlin] Inserting workflow step: document_id=61, office_id=1, user_id=, recipient_type=office, step_order=3
+[29-Mar-2025 03:30:59 Europe/Berlin] Document processed successfully: document_id=61
+[29-Mar-2025 03:37:46 Europe/Berlin] POST data received in process_document.php: Array
+(
+    [title] => New Document 41231
+    [type_id] => 1
+    [content] => <div style="font-family: Arial, sans-serif; line-height: 1.6;"><!-- Letterhead Header -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 15px; position: relative; overflow: hidden; border-bottom: 5px solid #FFD700;">
+<div style="display: flex; align-items: center;">
+<div style="width: 80px; margin-right: 10px;"><img style="width: 100%; height: auto; border-radius: 50%;" src="assets/images/scc-logo.php" alt="SCC Logo"></div>
+<div style="flex-grow: 1;">
+<h1 style="color: #ffd700; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">SAINT COLUMBAN COLLEGE</h1>
+<div style="color: white; font-size: 11px; margin-top: 5px;">
+<p style="margin: 0;">Corner V. Ca&ntilde;izares - Sagunt Streets, San Francisco District, Pagadian City</p>
+<p style="margin: 0;">Tel Nos: 2151799 / 2151800 | Fax No: 2141200 | Website: www.sccpag.edu.ph | E-mail: saintcolumbanpagadian@sccpag.edu.ph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Content -->
+<div style="min-height: 600px; padding: 30px; background-image: url('assets/images/scc-watermark.php'); background-repeat: no-repeat; background-position: center; background-size: 50% auto; background-opacity: 0.05;">
+<div style="text-align: right;">March 29, 2025</div>
+<div style="margin-top: 20px;">
+<p>The Department Head<br>School of Computing and Communications<br>Saint Columban College<br>Pagadian City</p>
+</div>
+<div style="margin-top: 20px;">
+<p><strong>Subject: [Document Subject]</strong></p>
+</div>
+<div style="margin-top: 20px;">
+<p>Dear [Recipient's Name/Sir/Madam],</p>
+<p>[Introduction paragraph - briefly state the purpose of the document]</p>
+<p>[Body paragraph 1 - provide details and supporting information]</p>
+<p>[Body paragraph 2 - additional information or context]</p>
+<p>[Closing paragraph - summarize and include any call to action or next steps]</p>
+</div>
+<div style="margin-top: 30px;">
+<p>Respectfully yours,</p>
+<p>President<br>[Your Position]<br>[Your Department]<br>[Your Contact Information]</p>
+</div>
+</div>
+<!-- Letterhead Footer -->
+<div style="background: linear-gradient(to right, #006400, #008000); padding: 10px; border-top: 5px solid #FFD700; position: relative;">
+<div style="display: flex; justify-content: center; align-items: center;">
+<div style="text-align: center;"><img style="height: 50px; width: auto;" src="assets/images/scc-acts-logo.php" alt="SCC ACTs Logo">
+<p style="color: white; font-size: 10px; margin: 5px 0 0 0;">Achieves Excellence | Cultivates a peaceful environment | Takes care of Mother Earth | Serves humanity</p>
+</div>
+</div>
+</div>
+</div>
+    [recipient_types] => Array
+        (
+            [0] => office
+            [1] => office
+            [2] => office
+        )
+
+    [workflow] => Array
+        (
+            [0] => 5
+            [1] => 9
+            [2] => 1
+        )
+
+)
+
+[29-Mar-2025 03:37:46 Europe/Berlin] Form data: title=New Document 41231, type_id=1, content length=2658
+[29-Mar-2025 03:37:46 Europe/Berlin] Base directory: C:\xampp\htdocs\SCCDMS
+[29-Mar-2025 03:37:46 Europe/Berlin] Upload directory: C:\xampp\htdocs\SCCDMS\storage\uploads\
+[29-Mar-2025 03:37:46 Europe/Berlin] Content directory: C:\xampp\htdocs\SCCDMS\storage\documents\
+[29-Mar-2025 03:37:46 Europe/Berlin] Saved content to: C:\xampp\htdocs\SCCDMS\storage\documents\67e75cfa018ff.html
+[29-Mar-2025 03:37:46 Europe/Berlin] Workflow data: Array
+(
+    [0] => 5
+    [1] => 9
+    [2] => 1
+)
+
+[29-Mar-2025 03:37:46 Europe/Berlin] Recipient types: Array
+(
+    [0] => office
+    [1] => office
+    [2] => office
+)
+
+[29-Mar-2025 03:37:46 Europe/Berlin] User workflow: Array
+(
+)
+
+[29-Mar-2025 03:37:46 Europe/Berlin] Clean workflow: Array
+(
+    [0] => Array
+        (
+            [office_id] => 5
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [1] => Array
+        (
+            [office_id] => 9
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+    [2] => Array
+        (
+            [office_id] => 1
+            [recipient_type] => office
+            [user_id] => 
+        )
+
+)
+
+[29-Mar-2025 03:37:46 Europe/Berlin] Inserting workflow step: document_id=62, office_id=5, user_id=, recipient_type=office, step_order=1
+[29-Mar-2025 03:37:46 Europe/Berlin] Inserting workflow step: document_id=62, office_id=9, user_id=, recipient_type=office, step_order=2
+[29-Mar-2025 03:37:46 Europe/Berlin] Inserting workflow step: document_id=62, office_id=1, user_id=, recipient_type=office, step_order=3
+[29-Mar-2025 03:37:46 Europe/Berlin] Document processed successfully: document_id=62
