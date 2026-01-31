@@ -6,3 +6,9 @@
 /temp_qrcodes/
 /config/*.json
 .env
+
+# Secrets
+*.json
+database/*.sql
+.env
+config/db.php
