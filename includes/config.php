@@ -48,7 +48,7 @@ $conn = null;
 
 try {
     // Create connection with proper charset and options
-    $conn = new mysqli($db_host, $db_username, $db_port, $db_password, $db_name);
+    $conn = new mysqli($db_host, $db_username, $db_password, $db_name, $db_port);
     
     // Ensure MySQL session uses the same timezone as PHP
     $conn->query("SET time_zone = '" . (new DateTime('now', $app_timezone))->format('P') . "'");
