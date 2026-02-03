@@ -1,4 +1,15 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Force log to file (useful since display may not show)
+ini_set('log_errors', 1);
+ini_set('error_log', '/tmp/php_errors.log');  // or your writable path
+
+// Optional: show we're here
+echo "<pre>Debug: Script started at " . date('Y-m-d H:i:s') . "</pre>";
+
 // Start output buffering to avoid "headers already sent" issues
 if (!headers_sent()) { ob_start(); }
 
