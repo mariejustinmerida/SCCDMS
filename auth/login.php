@@ -8,7 +8,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/tmp/php_errors.log');  // or your writable path
 
 // Optional: show we're here
-//echo "<pre>Debug: Script started at " . date('Y-m-d H:i:s') . "</pre>";
+echo "<pre>Debug: Script started at " . date('Y-m-d H:i:s') . "</pre>";
 
 // Start output buffering to avoid "headers already sent" issues
 if (!headers_sent()) { ob_start(); }
@@ -30,27 +30,42 @@ if (isset($_SESSION['user_id'])) {
 
 // Process login form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    echo "<pre>Debug: POST received - processing login...</pre>\n";
+
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    echo "<pre>Debug: Email = '$email'</pre>\n";
 
     if (empty($email) || empty($password)) {
         $error = "Both fields are required.";
-        // Log failed attempt (missing fields)
+        echo "<pre>Debug: Missing fields</pre>\n";
         log_failed_login_attempt($email, $_SERVER['REMOTE_ADDR'] ?? '');
     } else {
-        $sql = "SELECT u.*, r.role_name, o.office_name FROM users u 
+        echo "<pre>Debug: Preparing SQL query...</pre>\n";
+
+        $sql = "SELECT u.*, r.role_name, o.office_name 
+                FROM users u 
                 JOIN roles r ON u.role_id = r.role_id 
                 JOIN offices o ON u.office_id = o.office_id 
                 WHERE email = ?";
 
         if ($stmt = $conn->prepare($sql)) {
+            echo "<pre>Debug: Statement prepared</pre>\n";
             $stmt->bind_param("s", $email);
+
             if ($stmt->execute()) {
+                echo "<pre>Debug: Query executed</pre>\n";
                 $result = $stmt->get_result();
+
                 if ($result->num_rows == 1) {
+                    echo "<pre>Debug: User found - verifying password</pre>\n";
                     $user = $result->fetch_assoc();
+
                     if (password_verify($password, $user['password'])) {
+                        echo "<pre>Debug: Password correct - regenerating session</pre>\n";
                         session_regenerate_id(true);
+
                         $_SESSION['user_id'] = $user['user_id'];
                         $_SESSION['username'] = $user['username'];
                         $_SESSION['role'] = $user['role_name'];
@@ -58,9 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['office_id'] = $user['office_id'];
                         $_SESSION['email'] = $user['email'];
                         $_SESSION['welcome_message'] = true;
-                        
-                        // Log user login action with enhanced details
-                        $details = "User logged in from " . $user['office_name'] . " office";
+
+                        echo "<pre>Debug: Session set - logging action</pre>\n";
+
+                        $details = "User logged in from " . ($user['office_name'] ?? 'unknown') . " office";
                         log_user_action(
                             $user['user_id'],
                             'login',
@@ -69,25 +85,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             null,
                             $user['office_id']
                         );
-                        
+
+                        echo "<pre>Debug: Redirecting to dashboard...</pre>\n";
                         header("Location: ../pages/dashboard.php");
                         exit();
                     } else {
                         $error = "Invalid email or password.";
-                        // Log failed attempt (bad password)
+                        echo "<pre>Debug: Bad password</pre>\n";
                         log_failed_login_attempt($email, $_SERVER['REMOTE_ADDR'] ?? '', 'bad_password');
                     }
                 } else {
                     $error = "Invalid email or password.";
-                    // Log failed attempt (no user)
+                    echo "<pre>Debug: No user found</pre>\n";
                     log_failed_login_attempt($email, $_SERVER['REMOTE_ADDR'] ?? '', 'unknown_email');
                 }
             } else {
-                $error = "Something went wrong. Please try again later.";
+                $error = "Query execution failed: " . $stmt->error;
+                echo "<pre>Debug ERROR: " . $stmt->error . "</pre>\n";
             }
             $stmt->close();
         } else {
-            $error = "Database error. Please try again later.";
+            $error = "Prepare failed: " . $conn->error;
+            echo "<pre>Debug ERROR: Prepare failed - " . $conn->error . "</pre>\n";
         }
     }
 }
