@@ -1,0 +1,73 @@
+{
+    "_readme": [
+        "This is a placeholder composer.lock – REPLACE WITH REAL ONE via 'composer install'",
+        "Generated skeleton only for passing detection"
+    ],
+    "content-hash": "ffffffffffffffffffffffffffffffffffffffff",
+    "packages": [
+        {
+            "name": "smalot/pdfparser",
+            "version": "v2.12.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smalot/pdfparser.git",
+                "reference": "some-real-commit-hash-would-go-here"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smalot/pdfparser/zipball/some-real-hash",
+                "reference": "some-real-hash",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Smalot\\PdfParser\\": "src/"
+                }
+            },
+            "license": ["LGPL-3.0-or-later"]
+        },
+        {
+            "name": "tecnickcom/tcpdf",
+            "version": "6.8.2",
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library"
+        },
+        {
+            "name": "google/apiclient",
+            "version": "v2.15.0",
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {},
+            "suggest": {},
+            "type": "library"
+        },
+        {
+            "name": "endroid/qr-code",
+            "version": "4.8.5",
+            "require": {
+                "php": "^8.1",
+                "bacon/bacon-qr-code": "^2.0.5"
+            },
+            "type": "library"
+        }
+        // ... many more sub-packages would be here (google/auth, guzzlehttp, etc.)
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^8.1"
+    },
+    "platform-overrides": {},
+    "plugin-api-version": "2.6.0"
+}
