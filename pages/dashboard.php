@@ -50,7 +50,12 @@ function human_time_diff($timestamp) {
         return date("M j", $timestamp);
     }
 }
+
+echo "<pre>Session debug on dashboard:\n";
+var_dump($_SESSION);
+echo "</pre>";
 ?>
+
 <!DOCTYPE html>
 <html>
 
