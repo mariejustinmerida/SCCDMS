@@ -33,9 +33,9 @@ $db_password = getenv('DB_PASSWORD') ?: 'AVNS_g55EEpigLGjmxn_9XJ0';
 $db_name     = getenv('DB_NAME')     ?: 'scc_dms';
 $db_port     = getenv('DB_PORT')     ?: '25060';
 
-// Debug: show what we're trying to use
-echo "<pre>Debug config: Connecting to $db_host:$db_port as $db_username / DB: $db_name</pre>\n";
-flush(); ob_flush();
+// // Debug: show what we're trying to use
+// echo "<pre>Debug config: Connecting to $db_host:$db_port as $db_username / DB: $db_name</pre>\n";
+// flush(); ob_flush();
 
 $conn = null;
 
@@ -48,8 +48,8 @@ try {
     // CORRECT ORDER: host, username, password, database, port
     $conn->real_connect($db_host, $db_username, $db_password, $db_name, $db_port);
 
-    echo "<pre>Debug: MySQLi connection SUCCESSFUL!</pre>\n";
-    flush(); ob_flush();
+    // echo "<pre>Debug: MySQLi connection SUCCESSFUL!</pre>\n";
+    // flush(); ob_flush();
 
     $conn->set_charset("utf8mb4");
 
