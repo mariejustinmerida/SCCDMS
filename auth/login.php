@@ -1,12 +1,12 @@
 <?php
-ini_set('display_errors', 0); // Production: hide errors
+ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
 
 ini_set('log_errors', 1);
 ini_set('error_log', '/tmp/php_errors.log');
 
-ob_start(); // Buffer output to prevent headers issues
+ob_start(); // Start buffering
 
 session_start();
 require_once '../includes/config.php';
@@ -44,13 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     if (password_verify($password, $user['password'])) {
                         session_regenerate_id(true);
 
-                        $_SESSION['user_id']        = $user['user_id'];
-                        $_SESSION['username']       = $user['username'];
-                        $_SESSION['role']           = $user['role_name'];
-                        $_SESSION['profile_image']  = $user['profile_image'];
-                        $_SESSION['office_id']      = $user['office_id'];
-                        $_SESSION['email']          = $user['email'];
-                        $_SESSION['welcome_message']= true;
+                        $_SESSION['user_id'] = $user['user_id'];
+                        $_SESSION['username'] = $user['username'];
+                        $_SESSION['role'] = $user['role_name'];
+                        $_SESSION['profile_image'] = $user['profile_image'];
+                        $_SESSION['office_id'] = $user['office_id'];
+                        $_SESSION['email'] = $user['email'];
+                        $_SESSION['welcome_message'] = true;
 
                         $details = "User logged in from " . ($user['office_name'] ?? 'unknown') . " office";
                         log_user_action(
@@ -62,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             $user['office_id']
                         );
 
-                        // NO ECHO HERE - clean redirect
+                        // Clean buffer before redirect
+                        ob_clean(); // Discard any buffered output
                         header("Location: ../pages/dashboard.php");
                         exit;
                     } else {
@@ -83,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
