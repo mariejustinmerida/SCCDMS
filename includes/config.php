@@ -27,38 +27,27 @@ if (file_exists(__DIR__ . '/../.env')) {
     }
 }
 
-$db_host     = getenv('DB_HOST')     ?: 'db-mysql-sgp1-32814-do-user-32439537-0.f.db.ondigitalocean.com';
+$db_host = getenv('DB_HOST') ?: 'db-mysql-sgp1-32814-do-user-32439537-0.f.db.ondigitalocean.com';
 $db_username = getenv('DB_USERNAME') ?: 'doadmin';
 $db_password = getenv('DB_PASSWORD') ?: 'AVNS_g55EEpigLGjmxn_9XJ0';
-$db_name     = getenv('DB_NAME')     ?: 'scc_dms';
-$db_port     = getenv('DB_PORT')     ?: '25060';
+$db_name = getenv('DB_NAME') ?: 'scc_dms';
+$db_port = getenv('DB_PORT') ?: '25060';
 
-// // Debug: show what we're trying to use
-// echo "<pre>Debug config: Connecting to $db_host:$db_port as $db_username / DB: $db_name</pre>\n";
-// flush(); ob_flush();
+// === NO ECHO/DEBUG HERE - removed to prevent output before headers ===
 
 $conn = null;
 
 try {
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Throw exceptions on errors
-
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $conn = new mysqli();
-    $conn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 5); // Fail fast after 5 seconds
-
-    // CORRECT ORDER: host, username, password, database, port
+    $conn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 5);
     $conn->real_connect($db_host, $db_username, $db_password, $db_name, $db_port);
-
-    // echo "<pre>Debug: MySQLi connection SUCCESSFUL!</pre>\n";
-    // flush(); ob_flush();
-
     $conn->set_charset("utf8mb4");
 
     // Timezone sync
     $tz = (new DateTime('now', new DateTimeZone(getenv('APP_TIMEZONE') ?: 'Asia/Manila')))->format('P');
     $conn->query("SET time_zone = '$tz'");
-
     $conn->query("SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO'");
-
 } catch (mysqli_sql_exception $e) {
     $msg = "MySQLi connection failed: " . $e->getMessage();
     error_log($msg);
@@ -71,13 +60,63 @@ try {
 // Security headers for production
 if (!headers_sent()) {
     header('X-Content-Type-Options: nosniff');
-    // Allow same-origin iframes (needed for print proxy). Still blocks third-party framing.
     header('X-Frame-Options: SAMEORIGIN');
     header('X-XSS-Protection: 1; mode=block');
     header('Referrer-Policy: strict-origin-when-cross-origin');
 }
 
-// Session security
+// === INSERT DATABASE SESSION HANDLER HERE (before session_start) ===
+
+// Custom DB session handler functions
+function db_session_open($savePath, $sessionName) { return true; }
+function db_session_close() { return true; }
+
+function db_session_read($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT data FROM sessions WHERE id = ?");
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $stmt->bind_result($data);
+    $stmt->fetch();
+    $stmt->close();
+    return $data ?: '';
+}
+
+function db_session_write($id, $data) {
+    global $conn;
+    $stmt = $conn->prepare("REPLACE INTO sessions (id, data, last_updated) VALUES (?, ?, NOW())");
+    $stmt->bind_param("ss", $id, $data);
+    return $stmt->execute();
+}
+
+function db_session_destroy($id) {
+    global $conn;
+    $stmt = $conn->prepare("DELETE FROM sessions WHERE id = ?");
+    $stmt->bind_param("s", $id);
+    return $stmt->execute();
+}
+
+function db_session_gc($maxlifetime) {
+    global $conn;
+    $old = time() - $maxlifetime;
+    $conn->query("DELETE FROM sessions WHERE UNIX_TIMESTAMP(last_updated) < $old");
+    return true;
+}
+
+// Register the DB session handler
+session_set_save_handler(
+    'db_session_open',
+    'db_session_close',
+    'db_session_read',
+    'db_session_write',
+    'db_session_destroy',
+    'db_session_gc'
+);
+
+// Ensure session is written at the end of script
+register_shutdown_function('session_write_close');
+
+// === NOW start the session (using DB storage) ===
 if (session_status() === PHP_SESSION_NONE) {
     ini_set('session.cookie_httponly', 1);
     ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
