@@ -2,6 +2,7 @@
 
 ob_start(); // catch any accidental output
 
+// Debug block — keep this for now
 session_start();
 
 $debug = [
@@ -15,22 +16,16 @@ $debug = [
     'request_uri'       => $_SERVER['REQUEST_URI'] ?? '(unknown)',
 ];
 
+// Print debug — but DON'T exit yet
 header('Content-Type: text/plain; charset=utf-8');
 echo "=== SESSION DEBUG ===\n";
 echo json_encode($debug, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-echo "\n\n";
-exit;
-/**
- * API: Get Notifications for Logged-in User
- * Returns latest notifications with document context
- */
+echo "\n\n--------------------------------------------------\n\n";
 
-// === MUST BE FIRST - no output before this ===
-
-// Load config (DB connection + session handler)
+// === Now continue with normal API logic ===
 require_once '../includes/config.php';
 
-// Optional: re-check auth (in case config.php doesn't enforce it)
+// Optional: re-check auth
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     header('Content-Type: application/json');
     http_response_code(401);
