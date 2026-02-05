@@ -2,16 +2,24 @@
 // Add error suppression to prevent warnings from showing on the page
 error_reporting(0);
 ini_set('display_errors', 0);
-
 // Start output buffering at the very beginning of the file
 ob_start();
 
-$valid_pages = ['dashboard_content', 'compose', 'documents', 'incoming', 'outgoing', 'received', 'hold', 'approved', 'track', 'user_logs', 'generate_test_logouts', 'view', 'edit', 'view_document', 'approve_document', 'resume', 'request_revision', 'revise_document', 'documents_needing_revision', 'document_qr_approval', 'simple_approval', 'admin_verify', 'document_with_qr_wrapper', 'rejected', 'ai_settings', 'test_ai_features', 'settings', 'admin_users', 'admin_documents', 'admin_roles_offices', 'drafts', 'reminders'];
+$valid_pages = [
+    'dashboard_content', 'compose', 'documents', 'incoming', 'outgoing', 'received', 'hold',
+    'approved', 'track', 'user_logs', 'generate_test_logouts', 'view', 'edit', 'view_document',
+    'approve_document', 'resume', 'request_revision', 'revise_document', 'documents_needing_revision',
+    'document_qr_approval', 'simple_approval', 'admin_verify', 'document_with_qr_wrapper',
+    'rejected', 'ai_settings', 'test_ai_features', 'settings', 'admin_users', 'admin_documents',
+    'admin_roles_offices', 'drafts', 'reminders'
+];
+
 $page = isset($_GET['page']) && in_array($_GET['page'], $valid_pages) ? $_GET['page'] : 'dashboard_content';
 $page_file = $page . '.php';
-session_start(); // Start session to access session variables
+
+session_start();
 require_once '../includes/config.php';
-require_once '../includes/activity_logger.php'; // Include activity logger
+require_once '../includes/activity_logger.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -28,45 +36,43 @@ $stmt->execute();
 $user_result = $stmt->get_result();
 $user = $user_result->fetch_assoc();
 
-// Get requested page or default to dashboard
 $folder = isset($_GET['folder']) ? $_GET['folder'] : 'all';
 
-// Function to get human-readable time difference
+// Human-readable time difference function
 function human_time_diff($timestamp) {
     $difference = time() - $timestamp;
-
-    if ($difference < 60) {
-        return "just now";
-    } elseif ($difference < 3600) {
+    if ($difference < 60) return "just now";
+    if ($difference < 3600) {
         $minutes = floor($difference / 60);
         return $minutes . " " . ($minutes == 1 ? "minute" : "minutes") . " ago";
-    } elseif ($difference < 86400) {
+    }
+    if ($difference < 86400) {
         $hours = floor($difference / 3600);
         return $hours . " " . ($hours == 1 ? "hour" : "hours") . " ago";
-    } elseif ($difference < 604800) {
+    }
+    if ($difference < 604800) {
         $days = floor($difference / 86400);
         return $days . " " . ($days == 1 ? "day" : "days") . " ago";
-    } else {
-        return date("M j", $timestamp);
     }
+    return date("M j", $timestamp);
 }
 
 echo "<pre>Session debug on dashboard:\n";
 var_dump($_SESSION);
 echo "</pre>";
 ?>
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
-    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" />
-  <title>Dashboard - SCC DMS</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
-    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+          href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800" />
+    <title>Dashboard - SCC DMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+          href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800" />
   <style>
     body {
       font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
@@ -645,17 +651,17 @@ echo "</pre>";
         </script>
       <?php endif; ?>
 
-      <!-- Notification Bell -->
-      <div class="relative">
-        <button class="notification-bell relative p-2 hover:bg-gray-100 rounded-full">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
-          <span class="notification-badge">0</span>
-        </button>
+<!-- Notification Bell -->
+        <div class="relative">
+            <button class="notification-bell relative p-2 hover:bg-gray-100 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span class="notification-badge">0</span>
+            </button>
         
-        <!-- Notifications Container -->
-        <div id="notificationsContainer" class="notification-popup hidden fixed top-16 right-4 bg-white border border-gray-200 rounded-lg shadow-xl z-[10001] w-80">
+       <!-- Notifications Container -->
+            <div id="notificationsContainer" class="notification-popup hidden fixed top-16 right-4 bg-white border border-gray-200 rounded-lg shadow-xl z-[10001] w-80">
           <div class="border-b border-gray-200 px-4 py-3 flex justify-between items-center bg-gray-50 rounded-t-lg">
             <h3 class="font-medium text-gray-700">Notifications</h3>
             <button id="closeNotifications" class="text-gray-400 hover:text-gray-600">
@@ -934,27 +940,20 @@ echo "</pre>";
         </div>
     </aside>
 
-    <!-- Main Content -->
+<!-- Main Content -->
     <main class="flex-1 p-6" style="margin-left: 230px; transition: margin-left 0.3s ease;">
-      <?php 
-      // Define a constant to indicate files are being included in dashboard
-      define('INCLUDED_IN_DASHBOARD', true);
-      
-      // Include the requested page
-      if (file_exists($page_file)) {
-        // Debug output
-        if ($page === 'ai_settings') {
-          echo "<div class='bg-yellow-100 p-2 mb-4'>Debug: Loading AI Settings page. File path: $page_file, Exists: " . (file_exists($page_file) ? 'Yes' : 'No') . "</div>";
+        <?php
+        define('INCLUDED_IN_DASHBOARD', true);
+        if (file_exists($page_file)) {
+            include $page_file;
+        } else {
+            echo "<div class='bg-white rounded-lg shadow-md p-6'>
+                    <h2 class='text-xl font-semibold mb-4'>Page Not Found</h2>
+                    <p class='text-gray-600'>The requested page could not be found.</p>
+                    <p class='text-gray-600'>Looking for: $page_file</p>
+                  </div>";
         }
-        include($page_file);
-      } else {
-        echo "<div class='bg-white rounded-lg shadow-md p-6'>
-                <h2 class='text-xl font-semibold mb-4'>Page Not Found</h2>
-                <p class='text-gray-600'>The requested page could not be found.</p>
-                <p class='text-gray-600'>Looking for: $page_file</p>
-              </div>";
-      }
-      ?>
+        ?>
     </main>
   </div>
 
@@ -1003,33 +1002,38 @@ echo "</pre>";
     document.addEventListener('DOMContentLoaded', function() {
       // Notification toggle
       const notificationBell = document.querySelector('.notification-bell');
-      const notificationsContainer = document.getElementById('notificationsContainer');
-      const closeNotifications = document.getElementById('closeNotifications');
-      const markAllRead = document.getElementById('markAllRead');
+    const notificationsContainer = document.getElementById('notificationsContainer');
+    const closeBtn = document.getElementById('closeNotifications');
+    const markAllReadBtn = document.getElementById('markAllRead');
       
-      // If notification bell exists, add event listener
       if (notificationBell) {
-        notificationBell.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          notificationsContainer.classList.toggle('hidden');
-          
-          // Load notifications when opening
-          if (!notificationsContainer.classList.contains('hidden')) {
-            loadNotifications();
-          }
+        notificationBell.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (notificationsContainer) {
+                notificationsContainer.classList.toggle('hidden');
+                if (!notificationsContainer.classList.contains('hidden')) {
+                    loadNotifications();
+                }
+            }
         });
-      }
+    } else {
+        console.warn("Notification bell button not found");
+    }
       
-      // Close notifications when clicking outside
-      document.addEventListener('click', function(e) {
-        if (notificationsContainer && 
-            !notificationsContainer.classList.contains('hidden') && 
-            !notificationsContainer.contains(e.target) && 
-            !notificationBell.contains(e.target)) {
-          notificationsContainer.classList.add('hidden');
+      // Click outside to close
+    document.addEventListener('click', (e) => {
+        if (notificationsContainer && !notificationsContainer.classList.contains('hidden') &&
+            !notificationsContainer.contains(e.target) && !notificationBell?.contains(e.target)) {
+            notificationsContainer.classList.add('hidden');
         }
-      });
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            notificationsContainer?.classList.add('hidden');
+        });
+    }
       
       // Close button functionality
       if (closeNotifications) {
@@ -1038,296 +1042,202 @@ echo "</pre>";
         });
       }
       
-      // Mark all as read functionality
-      if (markAllRead) {
-        markAllRead.addEventListener('click', function() {
-          // Mark all notifications as read in the UI
-          const unreadItems = document.querySelectorAll('.notification-item.unread');
-          unreadItems.forEach(item => {
-            item.classList.remove('unread');
-          });
-          
-          // Mark as read in the backend
-          fetch('../api/mark_all_notifications_read.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              // Update badge to show 0 unread notifications
-              updateNotificationBadge(0);
-              console.log('All notifications marked as read');
-            }
-          })
-          .catch(error => {
-            console.error('Error marking notifications as read:', error);
-          });
+      if (markAllReadBtn) {
+        markAllReadBtn.addEventListener('click', () => {
+            document.querySelectorAll('.notification-item.unread').forEach(item => {
+                item.classList.remove('unread');
+            });
+
+            fetch('api/mark_all_notifications_read.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    updateNotificationBadge(0);
+                    console.log('All notifications marked as read');
+                }
+            })
+            .catch(err => console.error('Error marking all read:', err));
         });
-      }
+    }
       
-      // Load notifications
       function loadNotifications() {
-        const notificationsList = document.getElementById('notificationsList');
-        const noNotifications = document.getElementById('noNotifications');
-        
-        if (!notificationsList) return;
-        
+        const list = document.getElementById('notificationsList');
+        const noNotif = document.getElementById('noNotifications');
+        if (!list) return;
+
         console.log('Loading notifications...');
-        
-        fetch('../api/get_notifications.php')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            console.log('Notifications data:', data);
-            
-            if (data.success && data.notifications && data.notifications.length > 0) {
-              notificationsList.innerHTML = '';
-              noNotifications.classList.add('hidden');
-              
-              data.notifications.forEach(notification => {
-                const notificationItem = document.createElement('div');
-                notificationItem.className = `notification-item p-3 hover:bg-gray-50 ${notification.is_read ? '' : 'unread border-l-4 border-blue-500'}`;
-                
-                // Format date
-                const date = new Date(notification.created_at);
-                const formattedDate = date.toLocaleString();
-                
-                // Determine status badge color based on document status or notification status
-                let statusBadge = '';
-                const status = notification.document_status || notification.status || '';
-                
-                if (status) {
-                  let badgeClass = '';
-                  let statusText = status;
-                  
-                  switch (status.toLowerCase()) {
-                    case 'approved':
-                      badgeClass = 'bg-green-100 text-green-800';
-                      statusText = 'Approved';
-                      break;
-                    case 'rejected':
-                      badgeClass = 'bg-red-100 text-red-800';
-                      statusText = 'Rejected';
-                      break;
-                    case 'revision_requested':
-                      badgeClass = 'bg-purple-100 text-purple-800';
-                      statusText = 'Revision';
-                      break;
-                    case 'on_hold':
-                      badgeClass = 'bg-orange-100 text-orange-800';
-                      statusText = 'On Hold';
-                      break;
-                    case 'pending':
-                      badgeClass = 'bg-yellow-100 text-yellow-800';
-                      statusText = 'Pending';
-                      break;
-                    default:
-                      badgeClass = 'bg-gray-100 text-gray-800';
-                  }
-                  
-                  statusBadge = `<span class="inline-block px-2 py-0.5 rounded text-xs ${badgeClass} mt-1">${statusText}</span>`;
+
+        fetch('api/get_notifications.php')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                console.log('Notifications data:', data);
+
+                if (data.success && data.notifications?.length > 0) {
+                    list.innerHTML = '';
+                    noNotif.classList.add('hidden');
+
+                    data.notifications.forEach(notif => {
+                        const item = document.createElement('div');
+                        item.className = `notification-item p-3 hover:bg-gray-50 ${notif.is_read ? '' : 'unread border-l-4 border-blue-500'}`;
+
+                        const date = new Date(notif.created_at);
+                        const dateStr = date.toLocaleString();
+
+                        let statusBadge = '';
+                        const status = notif.document_status || notif.status || '';
+                        if (status) {
+                            let cls = 'bg-gray-100 text-gray-800';
+                            let txt = status;
+                            if (status.toLowerCase() === 'approved') { cls = 'bg-green-100 text-green-800'; txt = 'Approved'; }
+                            else if (status.toLowerCase() === 'rejected') { cls = 'bg-red-100 text-red-800'; txt = 'Rejected'; }
+                            else if (status.toLowerCase().includes('revision')) { cls = 'bg-purple-100 text-purple-800'; txt = 'Revision'; }
+                            else if (status.toLowerCase().includes('hold')) { cls = 'bg-orange-100 text-orange-800'; txt = 'On Hold'; }
+                            else if (status.toLowerCase() === 'pending') { cls = 'bg-yellow-100 text-yellow-800'; txt = 'Pending'; }
+                            statusBadge = `<span class="inline-block px-2 py-0.5 rounded text-xs ${cls} mt-1">${txt}</span>`;
+                        }
+
+                        const actionLink = notif.document_id
+                            ? `<a href="?page=view_document&id=${notif.document_id}" class="text-blue-600 text-xs hover:underline mt-1 block">View Document</a>`
+                            : '';
+
+                        item.innerHTML = `
+                            <div class="flex justify-between items-start w-full">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900">${notif.title || 'Notification'}</p>
+                                    <p class="text-xs text-gray-500">${notif.message || ''}</p>
+                                    ${statusBadge}
+                                    ${actionLink}
+                                </div>
+                                <div class="flex flex-col items-end space-y-1 ml-3 flex-shrink-0">
+                                    <span class="text-xs text-gray-400 whitespace-nowrap">${dateStr}</span>
+                                    <button class="ignore-notification-btn text-xs text-gray-400 hover:text-red-500 transition-colors duration-200 whitespace-nowrap"
+                                            data-notification-id="${notif.notification_id}" title="Ignore this notification">
+                                        <i class="fas fa-times"></i> Ignore
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+
+                        if (notif.document_id) {
+                            item.style.cursor = 'pointer';
+                            item.addEventListener('click', e => {
+                                if (e.target.closest('.ignore-notification-btn') || e.target.tagName.toLowerCase() === 'a') return;
+                                window.location.href = `?page=view_document&id=${notif.document_id}`;
+                            });
+                        }
+
+                        list.appendChild(item);
+                    });
+
+                    addIgnoreButtonListeners();
+
+                    const unread = data.notifications.filter(n => !n.is_read).length;
+                    updateNotificationBadge(unread);
+                } else {
+                    list.innerHTML = '';
+                    noNotif.classList.remove('hidden');
+                    updateNotificationBadge(0);
                 }
-                
-                // Create action link if document_id exists - deep link to in-dashboard document view
-                let actionLink = '';
-                if (notification.document_id) {
-                  actionLink = `<a href="?page=view_document&id=${notification.document_id}" class="text-blue-600 text-xs hover:underline mt-1 block">View Document</a>`;
-                }
-                
-                const notificationHTML = `
-                  <div class="flex justify-between items-start w-full">
-                    <div class="flex-1 min-w-0">
-                      <p class="text-sm font-medium text-gray-900">${notification.title || 'Notification'}</p>
-                      <p class="text-xs text-gray-500">${notification.message || ''}</p>
-                      ${statusBadge}
-                      ${actionLink}
-                    </div>
-                    <div class="flex flex-col items-end space-y-1 ml-3 flex-shrink-0">
-                      <span class="text-xs text-gray-400 whitespace-nowrap">${formattedDate}</span>
-                      <button class="ignore-notification-btn text-xs text-gray-400 hover:text-red-500 transition-colors duration-200 whitespace-nowrap" 
-                              data-notification-id="${notification.notification_id}" 
-                              title="Ignore this notification">
-                        <i class="fas fa-times"></i> Ignore
-                      </button>
-                    </div>
-                  </div>
-                `;
-                
-                // console.log('Generated notification HTML for ID', notification.notification_id, ':', notificationHTML);
-                notificationItem.innerHTML = notificationHTML;
-                
-                // Make entire item clickable when we have a destination
-                if (notification.document_id) {
-                  notificationItem.style.cursor = 'pointer';
-                  notificationItem.addEventListener('click', (e) => {
-                    // Avoid interfering with the Ignore button or the anchor itself
-                    if (e.target.closest('.ignore-notification-btn')) return;
-                    if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === 'a') return;
-                    window.location.href = `?page=view_document&id=${notification.document_id}`;
-                  });
-                }
-                notificationsList.appendChild(notificationItem);
-              });
-              
-              // Add event listeners for ignore buttons
-              addIgnoreButtonListeners();
-              
-              // Update badge count
-              const unreadCount = data.notifications.filter(n => !n.is_read).length;
-              updateNotificationBadge(unreadCount);
-              
-              console.log(`Loaded ${data.notifications.length} notifications, ${unreadCount} unread`);
-            } else {
-              notificationsList.innerHTML = '';
-              noNotifications.classList.remove('hidden');
-              updateNotificationBadge(0);
-              console.log('No notifications found');
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching notifications:', error);
-            notificationsList.innerHTML = `<div class="p-3 text-center text-sm text-red-500">Error loading notifications</div>`;
-            noNotifications.classList.add('hidden');
-          });
-      }
+            })
+            .catch(err => {
+                console.error('Error fetching notifications:', err);
+                list.innerHTML = `<div class="p-3 text-center text-sm text-red-500">Error loading notifications</div>`;
+                noNotif?.classList.add('hidden');
+            });
+    }
       
-      // Update notification badge
       function updateNotificationBadge(count) {
         const badge = document.querySelector('.notification-badge');
-        if (badge) {
-          if (count > 0) {
+        if (!badge) return;
+
+        if (count > 0) {
             badge.textContent = count > 99 ? '99+' : count;
             badge.classList.remove('hidden');
-            badge.style.display = 'flex'; // Ensure it's displayed as flex
-            console.log(`Updated badge: ${count} notifications`);
-          } else {
+            badge.style.display = 'flex';
+        } else {
             badge.textContent = '0';
             badge.classList.add('hidden');
-            console.log('No unread notifications, hiding badge');
-          }
-        } else {
-          console.error('Notification badge element not found');
         }
-      }
+    }
       
-      // Add event listeners for ignore buttons
       function addIgnoreButtonListeners() {
-        const ignoreButtons = document.querySelectorAll('.ignore-notification-btn');
-        // console.log('Found ignore buttons:', ignoreButtons.length);
-        
-        ignoreButtons.forEach((button, index) => {
-          // console.log(`Adding listener to button ${index}:`, button);
-          
-          button.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const notificationId = this.getAttribute('data-notification-id');
-            // console.log('Ignore button clicked for notification:', notificationId);
-            if (notificationId) {
-              ignoreNotification(notificationId, this);
-            }
-          });
+        document.querySelectorAll('.ignore-notification-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+                const id = btn.dataset.notificationId;
+                if (id) ignoreNotification(id, btn);
+            });
         });
-      }
+    }
       
-      // Ignore notification function
-      function ignoreNotification(notificationId, buttonElement) {
-        // Show confirmation
-        if (!confirm('Are you sure you want to ignore this notification? This action cannot be undone.')) {
-          return;
-        }
-        
-        // Disable button to prevent multiple clicks
-        buttonElement.disabled = true;
-        buttonElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ignoring...';
-        
-        fetch('../api/ignore_notification.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            notification_id: notificationId
-          })
+      function ignoreNotification(id, button) {
+        if (!confirm('Ignore this notification? This cannot be undone.')) return;
+
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ignoring...';
+
+        fetch('api/ignore_notification.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ notification_id: id })
         })
-        .then(response => response.json())
+        .then(r => r.json())
         .then(data => {
-          if (data.success) {
-            // Remove the notification item from the UI
-            const notificationItem = buttonElement.closest('.notification-item');
-            if (notificationItem) {
-              notificationItem.style.opacity = '0.5';
-              notificationItem.style.transition = 'opacity 0.3s ease';
-              
-              setTimeout(() => {
-                notificationItem.remove();
-                
-                // Check if there are any notifications left
-                const remainingNotifications = document.querySelectorAll('.notification-item');
-                if (remainingNotifications.length === 0) {
-                  // Show "No notifications" message
-                  const noNotifications = document.getElementById('noNotifications');
-                  if (noNotifications) {
-                    noNotifications.classList.remove('hidden');
-                  }
-                  updateNotificationBadge(0);
-                } else {
-                  // Update badge count
-                  const unreadCount = document.querySelectorAll('.notification-item.unread').length;
-                  updateNotificationBadge(unreadCount);
+            if (data.success) {
+                const item = button.closest('.notification-item');
+                if (item) {
+                    item.style.opacity = '0.5';
+                    setTimeout(() => {
+                        item.remove();
+                        const remaining = document.querySelectorAll('.notification-item').length;
+                        if (remaining === 0) {
+                            document.getElementById('noNotifications')?.classList.remove('hidden');
+                            updateNotificationBadge(0);
+                        } else {
+                            const unread = document.querySelectorAll('.notification-item.unread').length;
+                            updateNotificationBadge(unread);
+                        }
+                    }, 300);
                 }
-              }, 300);
+            } else {
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-times"></i> Ignore';
+                alert('Failed to ignore notification.');
             }
-            
-            console.log('Notification ignored successfully');
-          } else {
-            // Re-enable button and show error
-            buttonElement.disabled = false;
-            buttonElement.innerHTML = '<i class="fas fa-times"></i> Ignore';
-            alert('Failed to ignore notification: ' + (data.error || 'Unknown error'));
-          }
         })
-        .catch(error => {
-          console.error('Error ignoring notification:', error);
-          // Re-enable button and show error
-          buttonElement.disabled = false;
-          buttonElement.innerHTML = '<i class="fas fa-times"></i> Ignore';
-          alert('Failed to ignore notification. Please try again.');
+        .catch(() => {
+            button.disabled = false;
+            button.innerHTML = '<i class="fas fa-times"></i> Ignore';
+            alert('Error occurred. Please try again.');
         });
-      }
+    }
       
-      // Load notifications on page load
-      loadNotifications();
-      
-      // Refresh notifications every minute
-      setInterval(loadNotifications, 60000);
-    });
+      // Initial load & periodic refresh
+    loadNotifications();
+    setInterval(loadNotifications, 60000);
+});
 
     // Profile dropdown functionality
-    const profileBtn = document.getElementById('profileBtn');
-    const profileDropdown = document.getElementById('profileDropdown');
-
-    if (profileBtn && profileDropdown) {
-      profileBtn.addEventListener('click', (e) => {
+const profileBtn = document.getElementById('profileBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+if (profileBtn && profileDropdown) {
+    profileBtn.addEventListener('click', e => {
         e.stopPropagation();
         profileDropdown.classList.toggle('hidden');
-      });
-
-      // Close dropdown when clicking elsewhere
-      document.addEventListener('click', (e) => {
+    });
+    document.addEventListener('click', e => {
         if (!profileDropdown.contains(e.target) && e.target !== profileBtn) {
-          profileDropdown.classList.add('hidden');
+            profileDropdown.classList.add('hidden');
         }
-      });
-    }
+    });
+}
 
     // Sidebar collapse functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
@@ -1335,24 +1245,20 @@ echo "</pre>";
     const mainContent = document.querySelector('main');
     
     if (sidebarToggle && sidebar) {
-      sidebarToggle.addEventListener('click', function(e) {
+    sidebarToggle.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        
-        // Toggle the 'close' class
         sidebar.classList.toggle('close');
-        const isCollapsed = sidebar.classList.contains('close');
+        const collapsed = sidebar.classList.contains('close');
 
         // Adjust main content margin
         if (mainContent) {
-          mainContent.style.marginLeft = isCollapsed ? '80px' : '230px';
+            mainContent.style.marginLeft = collapsed ? '80px' : '230px';
         }
         
         // Adjust navigation bar position
-        const navBar = document.querySelector('nav');
-        if (navBar) {
-          navBar.style.left = isCollapsed ? '80px' : '230px';
-        }
+        const nav = document.querySelector('nav');
+        if (nav) nav.style.left = collapsed ? '80px' : '230px';
 
         // Hide/show all text spans (including badges)
         const allSpans = sidebar.querySelectorAll('a span');
@@ -1395,8 +1301,8 @@ echo "</pre>";
   
   <!-- Enhanced Notification System - REMOVED: Using direct implementation -->
   <!-- <script src="../assets/js/enhanced-notifications.js"></script> -->
-  <!-- Include reminder notification system -->
-  <script src="../assets/js/reminder-notifications.js"></script>
+  <!-- Reminder script - adjusted path -->
+<script src="../../assets/js/reminder-notifications.js"></script>
 </body>
 
 </html>
