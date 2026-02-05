@@ -27,8 +27,6 @@ if (!isset($_SESSION['user_id']) || !is_numeric($_SESSION['user_id'])) {
 
 $user_id = (int)$_SESSION['user_id'];
 
-// ... rest of your code (table checks, query, etc.) remains unchanged ...
-
 // === Optional: One-time table structure check (can be moved to migration script) ===
 $table_check = $conn->query("SHOW TABLES LIKE 'notifications'");
 if ($table_check->num_rows === 0) {
