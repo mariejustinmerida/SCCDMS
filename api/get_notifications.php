@@ -1,11 +1,31 @@
 <?php
+
+ob_start(); // catch any accidental output
+
+session_start();
+
+$debug = [
+    'time'              => date('c'),
+    'session_id'        => session_id() ?: '(none)',
+    'cookie_received'   => $_COOKIE[session_name()] ?? '(no cookie)',
+    'user_id_set'       => isset($_SESSION['user_id']) ? 'YES' : 'NO',
+    'user_id_value'     => $_SESSION['user_id'] ?? '(not set)',
+    'full_session'      => $_SESSION,
+    'script'            => __FILE__,
+    'request_uri'       => $_SERVER['REQUEST_URI'] ?? '(unknown)',
+];
+
+header('Content-Type: text/plain; charset=utf-8');
+echo "=== SESSION DEBUG ===\n";
+echo json_encode($debug, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+echo "\n\n";
+exit;
 /**
  * API: Get Notifications for Logged-in User
  * Returns latest notifications with document context
  */
 
 // === MUST BE FIRST - no output before this ===
-session_start();
 
 // Load config (DB connection + session handler)
 require_once '../includes/config.php';
