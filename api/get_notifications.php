@@ -4,44 +4,18 @@
  * Returns latest notifications with document context
  */
 
-// Catch any accidental output early
 ob_start();
-
-// ────────────────────────────────────────────────
-//   SESSION DEBUG – TEMPORARY (you can remove later)
-// ────────────────────────────────────────────────
 session_start();
 
-$debug = [
-    'time'              => date('c'),
-    'session_id'        => session_id() ?: '(none)',
-    'cookie_received'   => $_COOKIE[session_name()] ?? '(no cookie)',
-    'user_id_set'       => isset($_SESSION['user_id']) ? 'YES' : 'NO',
-    'user_id_value'     => $_SESSION['user_id'] ?? '(not set)',
-    'full_session'      => $_SESSION ?? '(session empty)',
-    'script'            => __FILE__,
-    'request_uri'       => $_SERVER['REQUEST_URI'] ?? '(unknown)',
-];
-
-// Output debug as a comment so it doesn't break JSON parsing
-echo "/* SESSION DEBUG\n" . json_encode($debug, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n*/\n\n";
-
-// ────────────────────────────────────────────────
-//   NORMAL API LOGIC STARTS HERE
-// ────────────────────────────────────────────────
-
-// Load config (DB connection + any shared session logic)
 require_once '../includes/config.php';
 
-// Set JSON response header (after debug comment)
 header('Content-Type: application/json');
 
-// Optional: re-check auth
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     http_response_code(401);
     echo json_encode([
         'success' => false,
-        'error'   => 'User not authenticated'
+        'error' => 'User not authenticated'
     ]);
     exit;
 }
@@ -115,10 +89,10 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
-// Return response
 echo json_encode([
     'success'      => true,
     'notifications' => $notifications,
     'count'        => count($notifications),
-    'user_id'      => $user_id  // optional debug
+    'user_id'      => $user_id
 ]);
+?>
