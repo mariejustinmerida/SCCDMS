@@ -696,8 +696,8 @@ echo "</pre>";
         </div>
       </div>
 
-      <!-- User Profile Dropdown -->
-      <div class="relative">
+     <!-- User Profile Dropdown -->
+<div class="relative">
     <button id="profileBtn" class="flex items-center focus:outline-none">
         <?php
         // Determine profile image path with fallback
