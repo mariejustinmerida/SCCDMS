@@ -698,57 +698,70 @@ echo "</pre>";
 
       <!-- User Profile Dropdown -->
       <div class="relative">
-        <button id="profileBtn" class="flex items-center focus:outline-none">
-          <?php if(isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])): ?>
-            <img src="<?php echo '../' . $_SESSION['profile_image']; ?>" alt="Profile" class="w-8 h-8 rounded-full object-cover cursor-pointer hover:opacity-80">
-          <?php else: ?>
-            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-              </svg>
-            </div>
-          <?php endif; ?>
-        </button>
+    <button id="profileBtn" class="flex items-center focus:outline-none">
+        <?php
+        // Determine profile image path with fallback
+        $profileImagePath = '';
+        if (!empty($_SESSION['profile_image'])) {
+            $fullPath = '../' . $_SESSION['profile_image'];
+            if (file_exists($fullPath)) {
+                $profileImagePath = $fullPath;
+            }
+        }
 
-        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-[10001]">
-          <div class="p-3 border-b">
-            <h3 class="text-sm font-semibold"><?php echo $_SESSION['username']; ?></h3>
-            <?php if(isset($_SESSION['email'])): ?>
-            <p class="text-xs text-gray-500"><?php echo $_SESSION['email']; ?></p>
+        if ($profileImagePath):
+        ?>
+            <img src="<?= htmlspecialchars($profileImagePath) ?>" 
+                 alt="Profile" 
+                 class="w-8 h-8 rounded-full object-cover cursor-pointer hover:opacity-80">
+        <?php else: ?>
+            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">
+                <!-- Default avatar icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+            </div>
+        <?php endif; ?>
+    </button>
+
+    <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-[10001]">
+        <div class="p-3 border-b">
+            <h3 class="text-sm font-semibold"><?= htmlspecialchars($_SESSION['username'] ?? 'User') ?></h3>
+            <?php if (!empty($_SESSION['email'])): ?>
+                <p class="text-xs text-gray-500"><?= htmlspecialchars($_SESSION['email']) ?></p>
             <?php endif; ?>
-          </div>
-          <div class="py-1">
-            <a href="../actions/update_profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-              <i class="fas fa-user-edit mr-2"></i> Update Profile
-            </a>
-          </div>
-          <?php if(isset($_SESSION['role']) && in_array($_SESSION['role'], ['President','Super Admin'])): ?>
-          <div class="py-1">
-            <a href="../auth/register.php" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">
-              <i class="fas fa-user-plus mr-2"></i> Add Users
-            </a>
-          </div>
-          <?php endif; ?>
-          <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'Super Admin'): ?>
-          <div class="py-1">
-            <a href="?page=admin_users" class="block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100">
-              <i class="fas fa-users-cog mr-2"></i> Manage Users
-            </a>
-          </div>
-          <div class="py-1">
-            <a href="?page=admin_documents" class="block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100">
-              <i class="fas fa-folder-open mr-2"></i> All Documents
-            </a>
-          </div>
-          <?php endif; ?>
-          <div class="py-1">
-            <a href="../auth/logout.php" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
-              <i class="fas fa-sign-out-alt mr-2"></i> Logout
-            </a>
-          </div>
         </div>
-      </div>
+        <div class="py-1">
+            <a href="../actions/update_profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-user-edit mr-2"></i> Update Profile
+            </a>
+        </div>
+        <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['President', 'Super Admin'])): ?>
+            <div class="py-1">
+                <a href="../auth/register.php" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">
+                    <i class="fas fa-user-plus mr-2"></i> Add Users
+                </a>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Super Admin'): ?>
+            <div class="py-1">
+                <a href="?page=admin_users" class="block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100">
+                    <i class="fas fa-users-cog mr-2"></i> Manage Users
+                </a>
+            </div>
+            <div class="py-1">
+                <a href="?page=admin_documents" class="block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100">
+                    <i class="fas fa-folder-open mr-2"></i> All Documents
+                </a>
+            </div>
+        <?php endif; ?>
+        <div class="py-1">
+            <a href="../auth/logout.php" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+        </div>
     </div>
+</div>
   </nav>
 
   <div class="flex pt-[60px]">
@@ -998,52 +1011,42 @@ echo "</pre>";
       setInterval(updateClock, 1000);
     });
 
-    // Notification functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      // Notification toggle
-      const notificationBell = document.querySelector('.notification-bell');
-    const notificationsContainer = document.getElementById('notificationsContainer');
+    document.addEventListener('DOMContentLoaded', function () {
+    // ... clock code ...
+
+    // Notification system - with safety checks
+    const bell = document.querySelector('.notification-bell');
+    const container = document.getElementById('notificationsContainer');
     const closeBtn = document.getElementById('closeNotifications');
     const markAllReadBtn = document.getElementById('markAllRead');
-      
-      if (notificationBell) {
-        notificationBell.addEventListener('click', (e) => {
+
+    if (bell && container) {
+        bell.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            if (notificationsContainer) {
-                notificationsContainer.classList.toggle('hidden');
-                if (!notificationsContainer.classList.contains('hidden')) {
-                    loadNotifications();
-                }
+            container.classList.toggle('hidden');
+            if (!container.classList.contains('hidden')) {
+                loadNotifications();
             }
         });
-    } else {
-        console.warn("Notification bell button not found");
     }
-      
-      // Click outside to close
-    document.addEventListener('click', (e) => {
-        if (notificationsContainer && !notificationsContainer.classList.contains('hidden') &&
-            !notificationsContainer.contains(e.target) && !notificationBell?.contains(e.target)) {
-            notificationsContainer.classList.add('hidden');
+
+    if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+            container.classList.add('hidden');
+        });
+    }
+
+    // Click outside to close
+    document.addEventListener('click', function (e) {
+        if (container && !container.classList.contains('hidden') &&
+            !container.contains(e.target) && !bell?.contains(e.target)) {
+            container.classList.add('hidden');
         }
     });
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            notificationsContainer?.classList.add('hidden');
-        });
-    }
-      
-      // Close button functionality
-      if (closeNotifications) {
-        closeNotifications.addEventListener('click', function() {
-          notificationsContainer.classList.add('hidden');
-        });
-      }
-      
-      if (markAllReadBtn) {
-        markAllReadBtn.addEventListener('click', () => {
+    if (markAllReadBtn) {
+        markAllReadBtn.addEventListener('click', function () {
             document.querySelectorAll('.notification-item.unread').forEach(item => {
                 item.classList.remove('unread');
             });
@@ -1302,7 +1305,7 @@ if (profileBtn && profileDropdown) {
   <!-- Enhanced Notification System - REMOVED: Using direct implementation -->
   <!-- <script src="../assets/js/enhanced-notifications.js"></script> -->
   <!-- Reminder script - adjusted path -->
-<script src="../../assets/js/reminder-notifications.js"></script>
+<script src="../../assets/js/enhanced-notifications.js"></script>
 </body>
 
 </html>
