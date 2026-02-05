@@ -1,26 +1,33 @@
 <?php
 /**
  * API: Get Notifications for Logged-in User
- * Returns latest notifications with document context
  */
 
+// NO session_start() here — config.php already does it
 ob_start();
-session_start();
 
-require_once '../includes/config.php';
+require_once __DIR__ . '/../includes/config.php';
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+// Auth check — now should work if session is properly shared
+if (!isset($_SESSION['user_id']) || !is_numeric($_SESSION['user_id'])) {
     http_response_code(401);
     echo json_encode([
         'success' => false,
-        'error' => 'User not authenticated'
+        'error' => 'User not authenticated',
+        'debug' => [
+            'session_exists' => session_status() === PHP_SESSION_ACTIVE ? 'YES' : 'NO',
+            'session_id' => session_id() ?: '(none)',
+            'user_id_isset' => isset($_SESSION['user_id']) ? 'YES' : 'NO'
+        ]
     ]);
     exit;
 }
 
 $user_id = (int)$_SESSION['user_id'];
+
+// ... rest of your code (table checks, query, etc.) remains unchanged ...
 
 // === Optional: One-time table structure check (can be moved to migration script) ===
 $table_check = $conn->query("SHOW TABLES LIKE 'notifications'");
