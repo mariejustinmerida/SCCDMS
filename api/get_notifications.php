@@ -1,8 +1,15 @@
 <?php
+/**
+ * API: Get Notifications for Logged-in User
+ * Returns latest notifications with document context
+ */
 
-ob_start(); // catch any accidental output
+// Catch any accidental output early
+ob_start();
 
-// Debug block — keep this for now
+// ────────────────────────────────────────────────
+//   SESSION DEBUG – TEMPORARY (you can remove later)
+// ────────────────────────────────────────────────
 session_start();
 
 $debug = [
@@ -11,42 +18,42 @@ $debug = [
     'cookie_received'   => $_COOKIE[session_name()] ?? '(no cookie)',
     'user_id_set'       => isset($_SESSION['user_id']) ? 'YES' : 'NO',
     'user_id_value'     => $_SESSION['user_id'] ?? '(not set)',
-    'full_session'      => $_SESSION,
+    'full_session'      => $_SESSION ?? '(session empty)',
     'script'            => __FILE__,
     'request_uri'       => $_SERVER['REQUEST_URI'] ?? '(unknown)',
 ];
 
-// Print debug — but DON'T exit yet
-header('Content-Type: text/plain; charset=utf-8');
-echo "=== SESSION DEBUG ===\n";
-echo json_encode($debug, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-echo "\n\n--------------------------------------------------\n\n";
+// Output debug as a comment so it doesn't break JSON parsing
+echo "/* SESSION DEBUG\n" . json_encode($debug, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n*/\n\n";
 
-// === Now continue with normal API logic ===
+// ────────────────────────────────────────────────
+//   NORMAL API LOGIC STARTS HERE
+// ────────────────────────────────────────────────
+
+// Load config (DB connection + any shared session logic)
 require_once '../includes/config.php';
+
+// Set JSON response header (after debug comment)
+header('Content-Type: application/json');
 
 // Optional: re-check auth
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
-    header('Content-Type: application/json');
     http_response_code(401);
     echo json_encode([
         'success' => false,
-        'error' => 'User not authenticated'
+        'error'   => 'User not authenticated'
     ]);
     exit;
 }
 
 $user_id = (int)$_SESSION['user_id'];
 
-// Set JSON header
-header('Content-Type: application/json');
-
 // === Optional: One-time table structure check (can be moved to migration script) ===
 $table_check = $conn->query("SHOW TABLES LIKE 'notifications'");
 if ($table_check->num_rows === 0) {
     echo json_encode([
         'success' => false,
-        'error' => 'Notifications table does not exist. Contact administrator.'
+        'error'   => 'Notifications table does not exist. Contact administrator.'
     ]);
     exit;
 }
@@ -55,14 +62,14 @@ if ($table_check->num_rows === 0) {
 $column_check = $conn->query("SHOW COLUMNS FROM notifications LIKE 'document_id'");
 if ($column_check->num_rows === 0) {
     // Add missing column (safe to run multiple times)
-    $conn->query("ALTER TABLE notifications 
+    $conn->query("ALTER TABLE notifications
                   ADD COLUMN document_id INT NULL AFTER user_id,
                   ADD FOREIGN KEY (document_id) REFERENCES documents(document_id) ON DELETE SET NULL");
 }
 
 // === Main query - only select existing columns ===
 $query = "
-    SELECT 
+    SELECT
         n.notification_id,
         n.user_id,
         n.document_id,
@@ -99,12 +106,10 @@ while ($row = $result->fetch_assoc()) {
             ? 'Update: ' . $row['document_title']
             : 'System Notification';
     }
-
     // Clean up message
     if (empty($row['message'])) {
         $row['message'] = 'You have a new notification.';
     }
-
     $notifications[] = $row;
 }
 
@@ -112,9 +117,8 @@ $stmt->close();
 
 // Return response
 echo json_encode([
-    'success' => true,
+    'success'      => true,
     'notifications' => $notifications,
-    'count' => count($notifications),
-    'user_id' => $user_id  // optional debug
+    'count'        => count($notifications),
+    'user_id'      => $user_id  // optional debug
 ]);
-?>
