@@ -971,57 +971,34 @@ echo "</pre>";
   </div>
 
   <script>
-    // Dynamic Clock Functionality
+// ────────────────────────────────────────────────
+//  SINGLE DOMContentLoaded - handles EVERYTHING
+// ────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Dynamic Clock ────────────────────────────────────────────────
     function updateClock() {
-      const now = new Date();
-      
-      // Format time (HH:MM:SS)
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      const timeString = `${hours}:${minutes}:${seconds}`;
-      
-      // Format date (Day, Month DD, YYYY)
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      const dayName = days[now.getDay()];
-      const monthName = months[now.getMonth()];
-      const day = String(now.getDate()).padStart(2, '0');
-      const year = now.getFullYear();
-      const dateString = `${dayName}, ${monthName} ${day}, ${year}`;
-      
-      // Update clock elements
-      const clockTime = document.getElementById('clockTime');
-      const clockDate = document.getElementById('clockDate');
-      
-      if (clockTime) {
-        clockTime.textContent = timeString;
-      }
-      if (clockDate) {
-        clockDate.textContent = dateString;
-      }
+        const now = new Date();
+        const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${String(now.getDate()).padStart(2, '0')}, ${now.getFullYear()}`;
+
+        document.getElementById('clockTime')?.textContent = time;
+        document.getElementById('clockDate')?.textContent = dateStr;
     }
-    
-    // Initialize clock and update every second
-    document.addEventListener('DOMContentLoaded', function() {
-      // Update clock immediately
-      updateClock();
-      
-      // Update clock every second
-      setInterval(updateClock, 1000);
-    });
+    updateClock();
+    setInterval(updateClock, 1000);
 
-    document.addEventListener('DOMContentLoaded', function () {
-    // ... clock code ...
-
-    // Notification system - with safety checks
+    // ── Notification System ──────────────────────────────────────────
     const bell = document.querySelector('.notification-bell');
     const container = document.getElementById('notificationsContainer');
     const closeBtn = document.getElementById('closeNotifications');
     const markAllReadBtn = document.getElementById('markAllRead');
 
+    // Bell click → toggle panel
     if (bell && container) {
-        bell.addEventListener('click', function (e) {
+        bell.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             container.classList.toggle('hidden');
@@ -1031,27 +1008,26 @@ echo "</pre>";
         });
     }
 
+    // Close button
     if (closeBtn && container) {
-        closeBtn.addEventListener('click', function () {
+        closeBtn.addEventListener('click', () => {
             container.classList.add('hidden');
         });
     }
 
-    // Click outside to close
-    document.addEventListener('click', function (e) {
+    // Click outside → close
+    document.addEventListener('click', (e) => {
         if (container && !container.classList.contains('hidden') &&
             !container.contains(e.target) && !bell?.contains(e.target)) {
             container.classList.add('hidden');
         }
     });
 
+    // Mark all as read
     if (markAllReadBtn) {
-        markAllReadBtn.addEventListener('click', function () {
-            document.querySelectorAll('.notification-item.unread').forEach(item => {
-                item.classList.remove('unread');
-            });
-
-            fetch('api/mark_all_notifications_read.php', {
+        markAllReadBtn.addEventListener('click', () => {
+            document.querySelectorAll('.notification-item.unread').forEach(item => item.classList.remove('unread'));
+            fetch('/api/mark_all_notifications_read.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -1062,28 +1038,31 @@ echo "</pre>";
                     console.log('All notifications marked as read');
                 }
             })
-            .catch(err => console.error('Error marking all read:', err));
+            .catch(err => console.error('Mark all read failed:', err));
         });
     }
-      
-      function loadNotifications() {
+
+    // ── Load Notifications ───────────────────────────────────────────
+    function loadNotifications() {
         const list = document.getElementById('notificationsList');
         const noNotif = document.getElementById('noNotifications');
         if (!list) return;
 
         console.log('Loading notifications...');
 
-        fetch('api/get_notifications.php')
+        fetch('/api/get_notifications.php')
             .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
                 return response.json();
             })
             .then(data => {
                 console.log('Notifications data:', data);
 
-                if (data.success && data.notifications?.length > 0) {
+                if (data.success && Array.isArray(data.notifications)) {
                     list.innerHTML = '';
-                    noNotif.classList.add('hidden');
+                    noNotif?.classList.add('hidden');
 
                     data.notifications.forEach(notif => {
                         const item = document.createElement('div');
@@ -1097,11 +1076,13 @@ echo "</pre>";
                         if (status) {
                             let cls = 'bg-gray-100 text-gray-800';
                             let txt = status;
-                            if (status.toLowerCase() === 'approved') { cls = 'bg-green-100 text-green-800'; txt = 'Approved'; }
-                            else if (status.toLowerCase() === 'rejected') { cls = 'bg-red-100 text-red-800'; txt = 'Rejected'; }
-                            else if (status.toLowerCase().includes('revision')) { cls = 'bg-purple-100 text-purple-800'; txt = 'Revision'; }
-                            else if (status.toLowerCase().includes('hold')) { cls = 'bg-orange-100 text-orange-800'; txt = 'On Hold'; }
-                            else if (status.toLowerCase() === 'pending') { cls = 'bg-yellow-100 text-yellow-800'; txt = 'Pending'; }
+                            switch (status.toLowerCase()) {
+                                case 'approved': cls = 'bg-green-100 text-green-800'; txt = 'Approved'; break;
+                                case 'rejected': cls = 'bg-red-100 text-red-800'; txt = 'Rejected'; break;
+                                case 'revision': case 'revision_requested': cls = 'bg-purple-100 text-purple-800'; txt = 'Revision'; break;
+                                case 'on_hold': case 'hold': cls = 'bg-orange-100 text-orange-800'; txt = 'On Hold'; break;
+                                case 'pending': cls = 'bg-yellow-100 text-yellow-800'; txt = 'Pending'; break;
+                            }
                             statusBadge = `<span class="inline-block px-2 py-0.5 rounded text-xs ${cls} mt-1">${txt}</span>`;
                         }
 
@@ -1144,7 +1125,7 @@ echo "</pre>";
                     updateNotificationBadge(unread);
                 } else {
                     list.innerHTML = '';
-                    noNotif.classList.remove('hidden');
+                    noNotif?.classList.remove('hidden');
                     updateNotificationBadge(0);
                 }
             })
@@ -1154,8 +1135,9 @@ echo "</pre>";
                 noNotif?.classList.add('hidden');
             });
     }
-      
-      function updateNotificationBadge(count) {
+
+    // ── Badge Update ─────────────────────────────────────────────────
+    function updateNotificationBadge(count) {
         const badge = document.querySelector('.notification-badge');
         if (!badge) return;
 
@@ -1168,8 +1150,9 @@ echo "</pre>";
             badge.classList.add('hidden');
         }
     }
-      
-      function addIgnoreButtonListeners() {
+
+    // ── Ignore Button Handlers ───────────────────────────────────────
+    function addIgnoreButtonListeners() {
         document.querySelectorAll('.ignore-notification-btn').forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault();
@@ -1179,14 +1162,14 @@ echo "</pre>";
             });
         });
     }
-      
-      function ignoreNotification(id, button) {
+
+    function ignoreNotification(id, button) {
         if (!confirm('Ignore this notification? This cannot be undone.')) return;
 
         button.disabled = true;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ignoring...';
 
-        fetch('api/ignore_notification.php', {
+        fetch('/api/ignore_notification.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ notification_id: id })
@@ -1212,7 +1195,7 @@ echo "</pre>";
             } else {
                 button.disabled = false;
                 button.innerHTML = '<i class="fas fa-times"></i> Ignore';
-                alert('Failed to ignore notification.');
+                alert('Failed to ignore notification: ' + (data.error || 'Unknown error'));
             }
         })
         .catch(() => {
@@ -1221,91 +1204,81 @@ echo "</pre>";
             alert('Error occurred. Please try again.');
         });
     }
-      
-      // Initial load & periodic refresh
+
+    // Start loading notifications
     loadNotifications();
     setInterval(loadNotifications, 60000);
-});
 
-    // Profile dropdown functionality
-const profileBtn = document.getElementById('profileBtn');
-const profileDropdown = document.getElementById('profileDropdown');
-if (profileBtn && profileDropdown) {
-    profileBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        profileDropdown.classList.toggle('hidden');
-    });
-    document.addEventListener('click', e => {
-        if (!profileDropdown.contains(e.target) && e.target !== profileBtn) {
-            profileDropdown.classList.add('hidden');
-        }
-    });
-}
+    // ── Profile Dropdown ─────────────────────────────────────────────
+    const profileBtn = document.getElementById('profileBtn');
+    const profileDropdown = document.getElementById('profileDropdown');
+    if (profileBtn && profileDropdown) {
+        profileBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+        document.addEventListener('click', e => {
+            if (!profileDropdown.contains(e.target) && e.target !== profileBtn) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+    }
 
-    // Sidebar collapse functionality
+    // ── Sidebar Collapse ─────────────────────────────────────────────
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('main');
-    
+
     if (sidebarToggle && sidebar) {
-    sidebarToggle.addEventListener('click', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        sidebar.classList.toggle('close');
-        const collapsed = sidebar.classList.contains('close');
+        sidebarToggle.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
 
-        // Adjust main content margin
-        if (mainContent) {
-            mainContent.style.marginLeft = collapsed ? '80px' : '230px';
-        }
-        
-        // Adjust navigation bar position
-        const nav = document.querySelector('nav');
-        if (nav) nav.style.left = collapsed ? '80px' : '230px';
+            sidebar.classList.toggle('close');
+            const collapsed = sidebar.classList.contains('close');
 
-        // Hide/show all text spans (including badges)
-        const allSpans = sidebar.querySelectorAll('a span');
-        allSpans.forEach(el => {
-          el.style.display = isCollapsed ? 'none' : '';
+            if (mainContent) {
+                mainContent.style.marginLeft = collapsed ? '80px' : '230px';
+            }
+
+            const nav = document.querySelector('nav');
+            if (nav) nav.style.left = collapsed ? '80px' : '230px';
+
+            // Hide/show text elements
+            sidebar.querySelectorAll('a span').forEach(el => {
+                el.style.display = collapsed ? 'none' : '';
+            });
+
+            sidebar.querySelectorAll('.ml-8').forEach(el => {
+                el.style.display = collapsed ? 'none' : 'flex';
+            });
+
+            const logoText = sidebar.querySelector('.logo h2');
+            if (logoText) logoText.style.display = collapsed ? 'none' : 'block';
+
+            const logoContainer = sidebar.querySelector('.logo');
+            if (logoContainer) {
+                logoContainer.style.justifyContent = collapsed ? 'center' : 'flex-start';
+            }
+
+            sidebar.querySelectorAll('a').forEach(link => {
+                if (collapsed) {
+                    link.style.justifyContent = 'center';
+                    link.style.padding = '0.75rem 0';
+                } else {
+                    link.style.justifyContent = '';
+                    link.style.padding = '0 12px';
+                }
+            });
         });
-
-        // Hide submenu items when collapsed
-        const subMenus = sidebar.querySelectorAll('.ml-8');
-        subMenus.forEach(el => {
-          el.style.display = isCollapsed ? 'none' : 'flex';
-        });
-
-        // Hide logo text but keep logo image visible
-        const logoText = sidebar.querySelector('.logo h2');
-        const logoContainer = sidebar.querySelector('.logo');
-        if (logoText) {
-          logoText.style.display = isCollapsed ? 'none' : 'block';
-        }
-        if (logoContainer) {
-          logoContainer.style.justifyContent = isCollapsed ? 'center' : 'flex-start';
-        }
-        
-        // Center all menu items when collapsed
-        const menuLinks = sidebar.querySelectorAll('a');
-        menuLinks.forEach(link => {
-          if (isCollapsed) {
-            link.style.justifyContent = 'center';
-            link.style.padding = '0.75rem 0';
-          } else {
-            link.style.justifyContent = '';
-            link.style.padding = '';
-          }
-        });
-
-        // Rotate toggle button icon - handled by CSS now
-      });
     }
-  </script>
+});
+</script>
   
   <!-- Enhanced Notification System - REMOVED: Using direct implementation -->
   <!-- <script src="../assets/js/enhanced-notifications.js"></script> -->
   <!-- Reminder script - adjusted path -->
-<script src="../../assets/js/enhanced-notifications.js"></script>
+<script src="/assets/js/enhanced-notifications.js"></script>
 </body>
 
 </html>
