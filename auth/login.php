@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once '../includes/config.php';
+require_once '../includes/security_events.php';
+require_once '../includes/logging.php';
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
@@ -8,10 +12,7 @@ ini_set('error_log', '/tmp/php_errors.log');
 
 ob_start(); // Start buffering
 
-session_start();
-require_once '../includes/config.php';
-require_once '../includes/security_events.php';
-require_once '../includes/logging.php';
+
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
