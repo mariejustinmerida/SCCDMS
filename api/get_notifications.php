@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * API: Get Notifications for Logged-in User
  */
