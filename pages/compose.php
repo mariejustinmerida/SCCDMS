@@ -112,11 +112,13 @@
    * This page allows users to create new documents.
    */
 
+session_start();
+require_once '../includes/config.php';
+
   if (session_status() === PHP_SESSION_NONE) {
       session_start();
   }
 
-  require_once '../includes/config.php';
   require_once '../includes/google_auth_handler.php';
 
   // Check if user is logged in
