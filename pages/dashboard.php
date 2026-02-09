@@ -1,4 +1,14 @@
 <?php
+
+session_start();
+require_once '../includes/config.php';
+require_once '../includes/activity_logger.php';
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
 // Add error suppression to prevent warnings from showing on the page
 error_reporting(0);
 ini_set('display_errors', 0);
@@ -17,15 +27,7 @@ $valid_pages = [
 $page = isset($_GET['page']) && in_array($_GET['page'], $valid_pages) ? $_GET['page'] : 'dashboard_content';
 $page_file = $page . '.php';
 
-session_start();
-require_once '../includes/config.php';
-require_once '../includes/activity_logger.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../index.php");
-    exit();
-}
 
 // Get user information
 $user_id = $_SESSION['user_id'];
