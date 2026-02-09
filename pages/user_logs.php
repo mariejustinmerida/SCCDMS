@@ -1,5 +1,7 @@
 <?php
 // Include the logging functions
+session_start();
+require_once '../includes/config.php';
 require_once '../includes/logging.php';
 
 // Check if user is logged in and has President or Super Admin role
