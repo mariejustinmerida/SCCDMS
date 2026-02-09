@@ -1,8 +1,10 @@
 <?php
+
+session_start();
+require_once '../includes/config.php';
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
-require_once __DIR__ . '/../includes/config.php';
 
 if (!isset($_SESSION['user_id'])) {
 	header('Location: ../auth/login.php');
