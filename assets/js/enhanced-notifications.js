@@ -75,8 +75,10 @@ class EnhancedNotificationSystem {
 
     async loadNotifications() {
         try {
-            const response = await fetch('../api/get_notifications.php');
-            const data = await response.json();
+            const response = await fetch('/api/get_notifications.php', {
+    credentials: 'include',
+    headers: { 'Accept': 'application/json' }
+});
 
             if (data.success && data.notifications) {
                 this.displayNotifications(data.notifications);
@@ -116,64 +118,71 @@ class EnhancedNotificationSystem {
         this.addIgnoreButtonListeners();
     }
 
-    createNotificationElement(notification) {
-        const notificationItem = document.createElement('div');
-        notificationItem.className = `notification-item ${notification.is_read ? '' : 'unread'} ${notification.priority || 'normal'}`;
-        
-        // Format date
-        const date = new Date(notification.created_at);
-        const formattedDate = this.formatDate(date);
-        
-        // Get priority icon
-        const priorityIcon = this.getPriorityIcon(notification.priority);
-        
-        // Get status badge
-        const statusBadge = this.getStatusBadge(notification.status);
-        
-        // Create action link if document_id exists
-        let actionLink = '';
-        if (notification.document_id) {
-            actionLink = `<a href="?page=documents&id=${notification.document_id}" 
-                            class="text-blue-600 text-xs hover:underline mt-1 block">
-                            View Document
-                         </a>`;
-        }
+    ✅ Diagnosis Complete
+Root Causes (ranked by severity)
 
-        notificationItem.innerHTML = `
-            <div class="flex justify-between items-start w-full">
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-center">
-                        ${priorityIcon}
-                        <p class="text-sm font-medium text-gray-900 ml-2">${notification.title || 'Notification'}</p>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-1">${notification.message || ''}</p>
-                    ${statusBadge}
-                    ${actionLink}
-                </div>
-                <div class="flex flex-col items-end space-y-1 ml-3 flex-shrink-0">
-                    <span class="text-xs text-gray-400 whitespace-nowrap">${formattedDate}</span>
-                    <button class="ignore-notification-btn text-xs text-gray-400 hover:text-red-500 transition-colors duration-200 whitespace-nowrap" 
-                            data-notification-id="${notification.notification_id}" 
-                            title="Ignore this notification"
-                            style="display: inline-flex !important; visibility: visible !important; background-color: #fef3c7 !important; border: 2px solid #f59e0b !important;">
-                        <i class="fas fa-times"></i> IGNORE
-                    </button>
-                </div>
+Critical SyntaxError at line 3348 → Broken enhanced-notifications.js
+Malformed template literals (missing backticks + markdown pasted into JS)
+Specifically this block is invalid JS:
+JavaScriptactionLink = `
+
+[View Document
+](?page=documents&id=${notification.document_id})
+
+`;→ Parser sees actionLink =  (newline) → Invalid left-hand side
+TypeError at line 2120 → Element lookup returns null
+Code runs document.getElementById('xxx').addEventListener but the element doesn't exist yet or ID is wrong.
+
+401 Unauthorized on /api/get_notifications.php (both inline + enhanced-notifications.js)
+fetch() is called without{ credentials: 'include' }
+Relative path ../api/ is fragile
+Session cookie is not being sent
+
+
+
+Fixes (Apply in this order)
+1. Fix assets/js/enhanced-notifications.js (Most Important)
+Replace the entire createNotificationElement() and getPriorityIcon() with this corrected version:
+JavaScriptcreateNotificationElement(notification) {
+    const notificationItem = document.createElement('div');
+    notificationItem.className = `notification-item ${notification.is_read ? '' : 'unread'} ${notification.priority || 'normal'}`;
+
+    const date = new Date(notification.created_at);
+    const formattedDate = this.formatDate ? this.formatDate(date) : date.toLocaleString();
+
+    const priorityIcon = this.getPriorityIcon(notification.priority);
+    const statusBadge = this.getStatusBadge ? this.getStatusBadge(notification.status) : '';
+
+    let actionLink = '';
+    if (notification.document_id) {
+        actionLink = `<a href="?page=documents&id=${notification.document_id}" class="text-blue-600 hover:underline text-sm">View Document →</a>`;
+    }
+
+    notificationItem.innerHTML = `
+        <div class="flex items-start gap-3 p-3">
+            <div class="text-xl">${priorityIcon}</div>
+            <div class="flex-1">
+                <div class="font-medium">${notification.title || 'Notification'}</div>
+                <div class="text-sm text-gray-600 mt-1">${notification.message || ''}</div>
+                ${statusBadge}
+                ${actionLink}
+                <div class="text-xs text-gray-500 mt-2">${formattedDate}</div>
             </div>
-        `;
+            <button class="ignore-btn text-gray-400 hover:text-red-600 text-xs">Ignore</button>
+        </div>
+    `;
+    return notificationItem;
+}
 
-        return notificationItem;
-    }
-
-    getPriorityIcon(priority) {
-        const icons = {
-            'critical': '<span class="text-red-500 text-lg">🚨</span>',
-            'high': '<span class="text-orange-500 text-lg">⚠️</span>',
-            'normal': '<span class="text-blue-500 text-lg">📋</span>',
-            'low': '<span class="text-gray-500 text-lg">ℹ️</span>'
-        };
-        return icons[priority] || icons['normal'];
-    }
+getPriorityIcon(priority) {
+    const icons = {
+        'critical': '🔴',
+        'high':    '🟠',
+        'normal':  'ℹ️',
+        'low':     '🔵'
+    };
+    return icons[priority?.toLowerCase()] || icons.normal;
+}
 
     getStatusBadge(status) {
         if (!status) return '';
