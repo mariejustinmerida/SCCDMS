@@ -1,8 +1,9 @@
 <?php
+require_once '../includes/config.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../includes/config.php';
+
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
