@@ -1,5 +1,9 @@
 <?php
+session_start();
+require_once '../includes/config.php';
 /**
+
+
  * Admin Document Verification Page
  * 
  * This page allows administrators and presidents to verify documents
